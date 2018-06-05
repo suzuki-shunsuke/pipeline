@@ -49,8 +49,9 @@ func (e *engine) Setup(_ context.Context, conf *backend.Config) error {
 	}
 	for _, network := range conf.Networks {
 		_, err := e.client.NetworkCreate(noContext, network.Name, types.NetworkCreate{
-			Driver:  network.Driver,
-			Options: network.DriverOpts,
+			Driver:         network.Driver,
+			Options:        network.DriverOpts,
+			CheckDuplicate: network.CheckDuplicate,
 			// Labels:  defaultLabels,
 		})
 		if err != nil {
